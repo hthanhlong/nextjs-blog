@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosServer = axios.create({
-  baseURL: `${process.env.SERVER_ENDPOINT}/api/v1`,
+  baseURL: `${process.env.NEXT_PUBLIC_SERVER_ENDPOINT}/api/v1`,
   withCredentials: true,
 });
 

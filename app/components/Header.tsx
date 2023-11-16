@@ -1,12 +1,12 @@
 import Link from "next/link";
-import LogoutButton from "./Logout";
+import LogoutButton from "./LogoutButton";
 
 const Header = () => {
   return (
-    <header>
-      <div className="navbar bg-base-100">
-        <ul tabIndex={0} className="flex gap-3">
-          <li>
+    <header className="h-20 border-b-4 border-indigo-500">
+      <nav className="h-full w-full flex items-center justify-center">
+        <ul tabIndex={0} className="flex gap-10">
+          <li className="hover:text-blue-700">
             <Link
               href={{
                 pathname: "/",
@@ -15,38 +15,20 @@ const Header = () => {
               Home
             </Link>
           </li>
-          <li>
+          <li className="hover:text-blue-700">
             <Link
               href={{
-                pathname: "/about",
+                pathname: "/admin",
               }}
             >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              href={{
-                pathname: "/posts",
-              }}
-            >
-              posts
-            </Link>
-          </li>
-          <li>
-            <Link
-              href={{
-                pathname: "/dashboard",
-              }}
-            >
-              Dashboard
+              admin
             </Link>
           </li>
           <li>
             <LogoutButton />
           </li>
         </ul>
-      </div>
+      </nav>
     </header>
   );
 };
