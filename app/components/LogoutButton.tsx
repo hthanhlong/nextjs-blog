@@ -6,7 +6,7 @@ const LogoutButton = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const handleLogout = async () => {
-    axiosClient.post("/logout");
+    await axiosClient.get("/logout");
     window?.localStorage.removeItem("isLogin");
     location.replace("/");
   };

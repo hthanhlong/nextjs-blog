@@ -23,7 +23,6 @@ function getRequiredStatus(pathname: string) {
 }
 
 export default function middleware(req) {
-  console.log("middleware");
   const token = cookies().get(ISLOGIN)?.value || "guest";
   const userStatus = getUserStatus(token);
   const requiredStatus = getRequiredStatus(req.nextUrl.pathname);

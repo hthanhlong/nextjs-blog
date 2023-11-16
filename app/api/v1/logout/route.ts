@@ -2,12 +2,8 @@ import axiosServer from "@/app/axios/axiosServer";
 import { ISLOGIN } from "@/app/contants";
 import { cookies } from "next/headers";
 
-export async function GET(request: Request) {}
-
-export async function HEAD(request: Request) {}
-
-export async function POST(request: Request) {
-  const res = await axiosServer.post("/logout");
+export async function GET(request: Request) {
+  const res = await axiosServer.get("/logout");
   if (!res?.data?.error) {
     cookies().delete(ISLOGIN);
     return Response.json({
@@ -18,6 +14,10 @@ export async function POST(request: Request) {
     msg: "delete cookies fail",
   });
 }
+
+export async function POST(request: Request) {}
+
+export async function HEAD(request: Request) {}
 
 export async function PUT(request: Request) {}
 
