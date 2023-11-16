@@ -23,9 +23,14 @@ function getRequiredStatus(pathname: string) {
 }
 
 export default function middleware(req) {
-  const token = cookies().get(ISLOGIN)?.value || "guest";
+  const token = cookies().get(ISLOGIN)?.value;
   const userStatus = getUserStatus(token);
   const requiredStatus = getRequiredStatus(req.nextUrl.pathname);
+
+  if (req.nextUrl.pathname.startsWith("/login")) {
+    if (token) return NextResponse.redirect(new URL("/", req.url));
+  }
+
   if (userStatus !== requiredStatus) {
     if (userStatus === "guest") {
       return NextResponse.redirect(new URL("/login", req.url));
@@ -36,5 +41,5 @@ export default function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/login"],
 };
