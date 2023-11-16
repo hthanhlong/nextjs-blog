@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:3000/api/v1", // Replace with your API base URL
+  baseURL: `${process.env.APP_ENDPOINT}/api/v1`, // Replace with your API base URL
 });
 
 // Request interceptor
