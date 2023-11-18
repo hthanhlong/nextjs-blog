@@ -1,13 +1,14 @@
 import axiosServer from "@/app/axios/axiosServer";
 import { ISLOGIN } from "@/app/contants";
 import { cookies } from "next/headers";
+import { MyResponse } from "../login/route";
 
 export async function GET(request: Request) {
-  const res = await axiosServer.get("/logout");
-  if (!res?.data?.error) {
+  const res: MyResponse = await axiosServer.get("/logout");
+  if (!res?.error) {
     cookies().delete(ISLOGIN);
     return Response.json({
-      msg: res.data.msg,
+      msg: res.msg,
     });
   }
   return Response.json({

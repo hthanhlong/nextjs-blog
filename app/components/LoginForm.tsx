@@ -1,14 +1,18 @@
 "use client";
 import React from "react";
 import axiosClient from "../axios/axiosClient";
+import { MyResponse } from "../api/v1/login/route";
 
 const LoginForm = () => {
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    const res = await axiosClient.post("/login", {});
-    if (res.data.msg === "set cookies done") {
+    const res: MyResponse = await axiosClient.post("/login", {
+      username: "hello username",
+      password: "hello password",
+    });
+    if (res.msg === "set cookies done") {
       console.log("set cookies done");
       localStorage.setItem("isLogin", "true");
       location.replace("/admin");

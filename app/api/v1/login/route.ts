@@ -2,19 +2,25 @@ import axiosServer from "@/app/axios/axiosServer";
 import { ISLOGIN } from "@/app/contants";
 import { cookies } from "next/headers";
 
+export interface MyResponse {
+  msg?: string;
+  error?: boolean;
+  result?: Record<any, any>;
+}
+
 export async function GET(request: Request) {}
 
 export async function HEAD(request: Request) {}
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const res = await axiosServer.post("/login", body);
-  if (!res?.data?.error) {
-    cookies().set(ISLOGIN, res.data.result.user, {
+  const res: MyResponse = await axiosServer.post("/login", body);
+  if (!res?.error) {
+    cookies().set(ISLOGIN, res.result.user, {
       httpOnly: true,
     });
     return Response.json({
-      msg: res.data.msg,
+      msg: res.msg,
     });
   }
   return Response.json({

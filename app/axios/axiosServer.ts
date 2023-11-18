@@ -24,8 +24,7 @@ axiosServer.interceptors.request.use(
 axiosServer.interceptors.response.use(
   (response) => {
     // Modify the response data here
-
-    return response;
+    return response.data;
   },
   (error) => {
     // Handle response errors here
